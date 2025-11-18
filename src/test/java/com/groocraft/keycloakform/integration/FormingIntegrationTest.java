@@ -46,7 +46,6 @@ public class FormingIntegrationTest {
     @Container
     private static final ComposeContainer environment = new ComposeContainer(
         new File("src/test/resources/integration/docker-compose.yml"))
-        .withLocalCompose(true)
         .withEnv("PROJECT_VERSION", "1.0.0-SNAPSHOT")
         .withExposedService(KEYCLOAK, 8080,
             Wait.forLogMessage(".*Running the server.*", 1).withStartupTimeout(Duration.ofMinutes(5)))
@@ -68,7 +67,7 @@ public class FormingIntegrationTest {
         await().atMost(Duration.ofMinutes(1)).until(testExport::exists);
 
         RealmDefinition generated = Deserialization
-            .getRealmsFromStream(testExport.toURI().toURL().openStream()).get(0);
+            .getRealmsFromStream(testExport.toURI().toURL().openStream()).getFirst();
 
         SoftAssertions softly = new SoftAssertions();
 

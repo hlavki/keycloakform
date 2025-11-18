@@ -25,6 +25,8 @@ import org.keycloak.exportimport.ImportProviderFactory;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
 
+import java.util.Map;
+
 /**
  * The FormerRegistrar class is an implementation of the ImportProviderFactory interface.
  * The interface is used because of configuration semantic, otherwise the implementation
@@ -53,6 +55,11 @@ public class FormerRegistrar implements ImportProviderFactory {
     private FormingInitializer initializer;
 
     public static final String ID = "keycloakform";
+
+    @Override
+    public ImportProvider create(KeycloakSession session, Map<String, String> overrides) {
+        return null;
+    }
 
     @Override
     public ImportProvider create(KeycloakSession session) {

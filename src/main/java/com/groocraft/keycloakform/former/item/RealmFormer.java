@@ -203,7 +203,7 @@ public class RealmFormer extends DefaultItemFormer<RealmModel, RealmDefinition> 
     private void setMasterAdminClient(RealmModel realm, FormerContext context) {
         if (!realm.getName().equals(Config.getAdminRealm()) && realm.getMasterAdminClient() == null) {
             RealmModel adminRealm = context.getSession().realms().getRealmByName(Config.getAdminRealm());
-            String adminClientId = KeycloakModelUtils.getMasterRealmAdminApplicationClientId(realm.getName());
+            String adminClientId = KeycloakModelUtils.getMasterRealmAdminManagementClientId(realm.getName());
             ClientModel adminClient = adminRealm.getClientByClientId(adminClientId);
             if (adminClient == null) {
                 throw new IllegalStateException(
